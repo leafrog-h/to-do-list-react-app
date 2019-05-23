@@ -1,0 +1,136 @@
+
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 10vh;
+  pointer-events: none;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+header button {
+  display: block;
+  cursor: pointer;
+  position: fixed;
+  border: none;
+  border-radius: 15%;
+  text-shadow: #282c34 1px 1px;
+  left: 20px;
+  top: 20px;
+  color: purple;
+  background-color: antiquewhite;
+}
+
+/* toggled div content */
+.toggledcontent {
+  position: fixed;
+  text-decoration: none;
+  top: 10vh;
+  margin-top: 5px;
+  min-height: 100vh;
+  background: linear-gradient(#34df, #9198e5);
+  color: #333;
+  border: 2px solid;
+}
+
+
+ .toggledcontent ul {
+   margin-right: 20px;
+ }
+
+.toggledcontent li  {
+  list-style-type: square;
+  margin: 50px auto;
+  left: 2px;
+}
+
+.toggledcontent a {
+  text-decoration: none;
+  color: #282c34;
+}
+
+.toggledcontent li:hover {
+  background-color: bisque;
+  color: #333;
+}
+
+.App-header {
+  background-color: #282c34;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.itemdiv button {
+  background-color: #282c34;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  right: 40px;
+  float: right;
+  color: white;
+}
+
+.itemdiv label, .itemdiv input {
+  display: inline-block;
+  justify-content: baseline;
+  top: 50%; 
+  text-shadow: darkcyan 5px;
+}
+
+
+input:checked + label {
+  text-decoration: line-through;
+}
+
+.itemdiv input, .itemdiv label {
+  left: 40px;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+
+
+#deleteall {
+  display: block;
+  margin: 20px auto;
+  font-size: 20px;
+  background-color: red;
+  border-radius: 10px;
+}
+/*   style for the submitform, first child component of the App.       */
+#submitform {
+  margin: 10px 0;
+  width: 100%;
+
+}
+
+#submitform p {
+  display: flex;
+  margin: 0 60px;
+  border: none;
+}
+
+#submitform label {
+  margin-right: 20px;
+}
+
+#submitform input:last-child {
+  margin-left: 20px;
+  color: purple;
+  border: none;
+  border-radius: 30px;
+  background-color: #333;
+  text-shadow: red 1px 1px;
+}
+
