@@ -4,7 +4,7 @@ import TodoList from './todolist';
 import TodoInput from './todoinput';
 import uuid from 'uuid'
 class App extends Component {
-  state = {todos: fetchLocal('todos'), isNavDisplayed: false} || {
+  state = {todos: fetchLocal('todos'), isNavDisplayed: fetchLocal("isNavDisplayed")} || {
     todos: [
       {
         id: this.getId(),
@@ -35,6 +35,7 @@ class App extends Component {
     console.log(e.target);
     const restTodos = [...this.state.todos.filter(todo => todo.id !== id)]
     this.setLocal("todos", restTodos)
+    this.setState({todos: restTodos})
   }
 
   handleDeleteAll = (e, id) => {
@@ -42,6 +43,7 @@ class App extends Component {
     const restTodos = [...this.state.todos.filter(todo => todo.shouldDelete === false)]
     this.setLocal("todos", restTodos)
     });
+    this.setState({todos: restTodos})
     if (this.state.todos.every(todo => todo.shouldDelete === false)) alert('No To-do item was chosen!');
   }
 
@@ -51,6 +53,7 @@ class App extends Component {
       if (todo.id === id) todo..shouldDelete = !todo.shouldDelete
     })
     this.setLocal("todos", todoList)
+    this.setState({todos: todoList})
   }
 
   handleSubmit = (val) => {
@@ -62,16 +65,16 @@ class App extends Component {
     }
     const newTodos = [...this.state.todos, AddedItem]
     this.setLocal("todos", newsTodos)
+    this.setState({todos: newTodos})
     console.log(AddedItem);
-
   }
 
   toggleDiv = () => {
     const content = document.querySelector('.toggledcontent');
     console.log(content);
     this.setLocal("isNavDisplayed", !this.state.isNavDisplayed)
+    this.setState({isNavDisplayed: !this.state.isNavDisplayed})
     content.style.display = this.state.isNavDisplayed? 'block': 'none';
-
   }
 
 
