@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import TodoList from './todolist';
 import TodoInput from './todoinput';
+import uuid from 'uuid'
 class App extends Component {
-  state = {
+  state = {todos: fetchLocal('todos'), isNavDisplayed: false} || {
     todos: [
       {
         id: this.getId(),
@@ -20,49 +21,47 @@ class App extends Component {
         task: 'walk several kilometers\' length ',
         shouldDelete: false,
       }
-    ]
+    ],
+    isNavDisplayed: false
   }
 
-  getId = () => parseInt(Math.random() * 1000)
+  getId = () => uuid.v4()
+
+  fetchLocal = (itemName) => JSON.parse(localStorage.getItem(itemName))
+
+  setLocal = (itemName, obj) => localStorage.setItem(itemName, JSON.stringfy(obj))
 
   handleDelete = (e, id) => {
     console.log(e.target);
-    this.setState({
-      todos: [...this.state.todos.filter(todo => todo.id !== id)]
-    })
+    const restTodos = [...this.state.todos.filter(todo => todo.id !== id)]
+    this.setLocal("todos", restTodos)
   }
 
   handleDeleteAll = (e, id) => {
     console.log(e.target);
-    this.setState({
-      todos: [...this.state.todos.filter(todo => todo.shouldDelete === false
-      )]
+    const restTodos = [...this.state.todos.filter(todo => todo.shouldDelete === false)]
+    this.setLocal("todos", restTodos)
     });
     if (this.state.todos.every(todo => todo.shouldDelete === false)) alert('No To-do item was chosen!');
   }
 
   handleChange = (e, id) => {
     console.log(e.target);
-    this.setState({
-      todos: [...this.state.todos.map(todo => {
-        if (todo.id === id) {
-          return Object.assign({}, todo, {shouldDelete: !todo.shouldDelete});
-        }
-      return todo;
-      })]
+    const todoList = this.state.todos.map(todo => {
+      if (todo.id === id) todo..shouldDelete = !todo.shouldDelete
     })
+    this.setLocal("todos", todoList)
   }
 
   handleSubmit = (val) => {
     console.log(val);
     const AddedItem = {
-      id: Math.random(),
+      id: getId(),
       task: val,
       shouldDelete: false
     }
-    this.setState({
-      todos: [...this.state.todos, AddedItem]
-    })
+    const newTodos = [...this.state.todos, AddedItem]
+    this.setLocal("todos", newsTodos)
     console.log(AddedItem);
 
   }
@@ -70,10 +69,9 @@ class App extends Component {
   toggleDiv = () => {
     const content = document.querySelector('.toggledcontent');
     console.log(content);
-    content.style.display = !this.state.isDisplayed? 'block': 'none';
-    this.setState({
-      isDisplayed: !this.state.isDisplayed,
-    })
+    this.setLocal("isNavDisplayed", !this.state.isNavDisplayed)
+    content.style.display = this.state.isNavDisplayed? 'block': 'none';
+
   }
 
 
