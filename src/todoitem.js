@@ -9,9 +9,9 @@ export const TodoItem = ({todo: {id, task}, onChange, onDelete}) => {
     }
     return (
         <div className='itemdiv' style={itemStyle} >
-            <p>
-            <input type='checkbox' value={task} onChange={onChange(id)} />
-            <label value={task} >{task}</label>
+            <p className="checkbox-container">
+            <input type='checkbox' value={task} onChange={onChange(id)} id={id}/>
+            <label value={task} for={id}>{task}</label>
             <button type='button' onClick={onDelete(id)}>Delete</button>
             </p>
         </div>
