@@ -1,6 +1,7 @@
 import React from "react";
+import '/todoitem.css';
 
-export const TodoItem = ({todo: {id, task}, onChange, onDelete}) => {
+const TodoItem = ({todo: {id, task}, onChange, onDelete}) => {
     const itemStyle = {
         borderBottom: '1px #ccc dotted',
         padding: '10px',
@@ -17,3 +18,5 @@ export const TodoItem = ({todo: {id, task}, onChange, onDelete}) => {
         </div>
     )
 };
+
+export default TodoItem
